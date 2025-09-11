@@ -13,6 +13,7 @@
   }
 }
 
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,16 +24,57 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.App{
+  display:grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns:  repeat(2, 1fr);
+  grid-template-areas:
+  "header nav"
+  "main main"
+  "footer footer";
+}
+nav{
+  grid-area:nav;
+  background-color: lightblue;
+}
+header{
+  grid-area:header;
+  background-color: lightgreen;
+}
+main{
+  grid-area:main;
+  background-color: lightgrey;
+}
+footer{
+  grid-area:footer;
+  background-color: lightcoral;
+}
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display:flex;
+}
+li{
+  background-color: lightyellow;
+  margin:5px;
+  border-radius: 30%;
+  padding:10px;
+  text-align: center;
+}
+a{
+  text-decoration: none;
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (max-width: 600px) {
+  .App {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "footer";
   }
 }

@@ -8,13 +8,12 @@ import Nav from './Nav';
 
 function App() {
   return (
-    <>
-      <h1>Homepage</h1>
+    <div className="App">
       <Header />
       <Nav />
-      <Main />
+      <Main/>
       <Footer />
-    </>
+    </div>
   );
 }
 
