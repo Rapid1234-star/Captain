@@ -1,19 +1,14 @@
+/* trunk-ignore-all(prettier) */
 .App {
   text-align: center;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "header nav"
+    "main main"
+    "footer footer";
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,46 +19,37 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.App{
-  display:grid;
-  grid-template-rows: repeat(3, auto);
-  grid-template-columns:  repeat(2, 1fr);
-  grid-template-areas:
-  "header nav"
-  "main main"
-  "footer footer";
-}
 nav{
-  grid-area:nav;
+  grid-area: nav;
   background-color: lightblue;
 }
-header{
-  grid-area:header;
+header {
+  grid-area: header;
   background-color: lightgreen;
 }
-main{
-  grid-area:main;
+main {
+  grid-area: main;
   background-color: lightgrey;
 }
-footer{
-  grid-area:footer;
+footer {
+  grid-area: footer;
   background-color: lightcoral;
 }
-ul{
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  display:flex;
+  display: flex;
 }
-li{
+li {
   background-color: lightyellow;
-  margin:5px;
-  border-radius: 30%;
-  padding:10px;
+  margin: 5px;
+  border-radius: 40%;
+  padding: 10px;
   text-align: center;
 }
-a{
+a {
   text-decoration: none;
   color: black;
 }
@@ -77,4 +63,9 @@ a{
       "main"
       "footer";
   }
+}
+.nav-links li:hover {
+  background-color: rgb(58, 112, 199);
+  transform: scale(1.1);
+  transition: transform 0.3s;
 }
