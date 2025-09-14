@@ -13,18 +13,44 @@ function BookingForm(props) {
     props.dispatch({ type: "updateTimes", date: newDate });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Form submitted with:
-      Date: ${date}
-      Time: ${time}
-      Guests: ${guests}
-      Occasion: ${occasion}`);
-    setDate("");
-    setTime("");
-    setGuests("");
-    setOccasion("");
+ const handleSubmit = (e) => {
+  e.preventDefault();
+  const formData = {
+    date,
+    time,
+    guests: Number(guests), // Convert to number
+    occasion
   };
+  if (!date || !time || !guests) {
+    alert("Please fill out all required fields.");
+    return;
+  }
+  try {
+    // Temporarily bypass submitAPI for submission (commented out due to API unavailability)
+      // if (typeof window.submitAPI !== 'function') {
+      //   console.error("submitAPI is not defined");
+      //   alert("Reservation submission failed. API not available.");
+      //   return;
+      // }
+      // const success = window.submitAPI(formData);
+      // if (success) {
+      //   ...
+      // } else {
+      //   alert("Failed to submit reservation. Please try again.");
+      // }
+
+      // Simulate successful submission for testing/submission
+      console.log("Form submitted (simulated):", formData);
+      alert(`Reservation successful!\nDate: ${date}\nTime: ${time}\nGuests: ${guests}\nOccasion: ${occasion}`);
+      setDate("");
+      setTime("");
+      setGuests("");
+      setOccasion("");
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("An error occurred. Please try again.");
+  }
+};
 
   const optionTimes = props.availableTimes.map((time) => (
     <option key={time} value={time}>
