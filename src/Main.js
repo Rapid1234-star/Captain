@@ -1,4 +1,4 @@
-import React, { use, useReducer, useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Homepage';
 import Menu from './Menu';
@@ -12,14 +12,14 @@ const initializeTimes = () => {
     const today = new Date();
     if (typeof window.fetchAPI !== 'function') {
       console.error("fetchAPI is not defined");
-      return ["17:00", "18:00", "19:00", "20:00", "21:00"]; // Fallback times
+      return ["17:00", "18:00", "19:00", "20:00", "21:00"];
     }
     const times = window.fetchAPI(today);
-    console.log("Initialized times:", times); // Debug log
+    console.log("Initialized times:", times);
     return times;
   } catch (error) {
     console.error("Error in initializeTimes:", error);
-    return ["17:00", "18:00", "19:00", "20:00", "21:00"]; // Fallback times
+    return ["17:00", "18:00", "19:00", "20:00", "21:00"];
   }
 };
 
@@ -30,14 +30,14 @@ const updateTimes = (state, action) => {
       const selectedDate = new Date(action.date);
       if (typeof window.fetchAPI !== 'function') {
         console.error("fetchAPI is not defined");
-        return state; // Return current state as fallback
+        return state;
       }
       const times = window.fetchAPI(selectedDate);
-      console.log("Updated times for date", action.date, ":", times); // Debug log
+      console.log("Updated times for date", action.date, ":", times);
       return times;
     } catch (error) {
       console.error("Error in updateTimes:", error);
-      return state; // Return current state to avoid breaking the app
+      return state;
     }
   }
   return state;
@@ -45,11 +45,12 @@ const updateTimes = (state, action) => {
 
 function Main() {
   const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
-  const[bookingData, setBookingData] = useState([]);
+  const [bookingData, setBookingData] = useState([]); // Store all bookings
 
-  const addBooking=(data) => {
-    setBookingData([...bookingData, data]);
-  }
+  // Function to add a new booking
+  const addBooking = (formData) => {
+    setBookingData((prev) => [...prev, { ...formData, id: Date.now() }]); // Add unique ID
+  };
 
   return (
     <main>
@@ -58,7 +59,7 @@ function Main() {
         <Route path="/Menu" element={<Menu />} />
         <Route path="/About" element={<About />} />
         <Route path="/Reservations" element={<Reservations />} />
-        <Route path="/Booking" element={<Booking availableTimes={availableTimes} dispatch={dispatch} />} />
+        <Route path="/Booking" element={<Booking availableTimes={availableTimes} dispatch={dispatch} bookingData={bookingData} addBooking={addBooking} />} />
       </Routes>
     </main>
   );
