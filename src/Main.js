@@ -79,7 +79,7 @@ function Main() {
                 <Route path="/" element={<Home />} />
                 <Route path="/Menu" element={<Menu />} />
                 <Route path="/About" element={<About />} />
-                <Route path="/Reservations" element={<Reservations />} />
+                <Route path="/Reservations" element={<Reservations availableTimes={availableTimes} dispatch={dispatch} bookingData={bookingData} addBooking={addBooking} submitForm={submitForm} />} />
                 <Route path="/ConfirmedBooking" element={<ConfirmedBooking />} />
                 <Route path="/Booking" element={<Booking availableTimes={availableTimes} dispatch={dispatch} bookingData={bookingData} addBooking={addBooking} submitForm={submitForm} />} /> {/* Pass submitForm */}
             </Routes>

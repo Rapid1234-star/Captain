@@ -37,7 +37,7 @@ function BookingForm({ availableTimes, dispatch, addBooking, submitForm }) { // 
     };
 
     const optionTimes = availableTimes.map((time) => (
-        <option key={time} value={time}>
+        <option key={time} className="Selected" value={time}>
             {time}
         </option>
     ));
@@ -61,26 +61,28 @@ function BookingForm({ availableTimes, dispatch, addBooking, submitForm }) { // 
     };
 
     return (
-        <form style={Styles} onSubmit={handleSubmit}>
+        <form style={Styles} onSubmit={handleSubmit} className="booking-form" aria-label="Booking Form">
             <label htmlFor="date">Choose date</label>
             <input
                 type="date"
                 id="date"
                 value={date}
                 onChange={handleDateChange}
+                required
             />
 
-            <label htmlFor="time">Choose time:</label>
+            <label htmlFor="time" aria-label="Choose time">Choose time:</label>
             <select
                 id="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
+                required
             >
                 <option value="">Select a Time</option>
                 {optionTimes}
             </select>
 
-            <label htmlFor="guests">Number of guests</label>
+            <label htmlFor="guests" aria-label="Number of Guests">Number of guests</label>
             <input
                 type="number"
                 id="guests"
@@ -89,23 +91,26 @@ function BookingForm({ availableTimes, dispatch, addBooking, submitForm }) { // 
                 max="10"
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
+                required
             />
 
-            <label htmlFor="occasion">Occasion</label>
+            <label htmlFor="occasion" aria-label="Pick An occasion">Occasion</label>
             <select
                 id="occasion"
                 value={occasion}
                 onChange={(e) => setOccasion(e.target.value)}
             >
-                <option value="">Select an Occasion</option>
-                <option value="Birthday">Birthday</option>
-                <option value="Anniversary">Anniversary</option>
+                <option className="Selected" value="">Select an Occasion</option>
+                <option className="Selected" value="Birthday">Birthday</option>
+                <option className="Selected"  value="Anniversary">Anniversary</option>
             </select>
 
             <input
                 type="submit"
                 value="Make Your Reservation"
+                aria-label="Submit"
                 style={ButtonStyle}
+                disabled={!date || !time || !guests} // Disable if required fields are empty
             />
         </form>
     );
