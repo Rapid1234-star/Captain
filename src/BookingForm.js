@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function BookingForm({ availableTimes, dispatch, addBooking, submitForm }) { // Add submitForm prop
+function BookingForm({ availableTimes, dispatch, addBooking, submitForm }) {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [guests, setGuests] = useState("");
