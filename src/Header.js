@@ -1,5 +1,10 @@
 function Header() { 
-    return <header>This is Header</header>
+    return (
+    <>
+    <header>
+        <img src="/Title.jpg" alt="Little Lemon Logo" />
+    </header>
+    </>)
 }
 
 export default Header;
